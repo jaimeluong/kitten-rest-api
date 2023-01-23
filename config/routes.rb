@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root "kittens#index" # Set root ('/') to index view
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :kittens # All 7 RESTful actions
 end
