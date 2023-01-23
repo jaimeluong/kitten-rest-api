@@ -1,0 +1,15 @@
+<h1>Hum Kitties</h1>
+<h2>Here u can view kitties..</h2>
+
+<ol>
+<% @kittens.each { |kitten| %>
+    <li>
+        <%= link_to kitten.name, kitten %>
+        - <%= link_to "destroy", kitten, data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?" } %>
+    </li>
+<% } %>
+</ol>
+
+<%= link_to "New kitten", new_kitten_path %>
