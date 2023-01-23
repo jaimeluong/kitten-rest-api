@@ -19,10 +19,10 @@ class KittensController < ApplicationController
 
         if @kitten.save # If Kitten is able to be saved
             redirect_to @kitten # Redirect to Kitten post page
-            # IMPLEMENT FLASH HERE
+            flash[:saved] = "Successfully created a kitty!"
         else
+            flash.now[:error] = "Something went wrong"
             render :new, status: :unprocessable_entity # Otherwise, send back to form with flash message
-            # IMPLEMENT FLASH HERE
         end
     end
 
@@ -35,10 +35,10 @@ class KittensController < ApplicationController
 
         if @kitten.update(kitten_params) # If Kitten is able to be updated given the new form submission
             redirect_to @kitten # Redirect to Kitten post page
-            # IMPLEMENT FLASH HERE
+            flash[:updated] = "Successfully updated a kitty!"
         else
+            flash.now[:error] = "Something went wrong"
             render :edit, status: :unprocessable_entity # Throw back to edit page with flash message
-            # IMPLEMENT FLASH HERE
         end
     end
     
@@ -46,8 +46,8 @@ class KittensController < ApplicationController
         @kitten = Kitten.find(params[:id]) # If a DELETE request is sent to the page for that kitten, find it by ID
         @kitten.destroy # Destroy record
 
+        flash[:destroyed] = "You killed a kitty..."
         redirect_to root_path
-        # IMPLEMENT FLASH HERE
     end
 
     private
